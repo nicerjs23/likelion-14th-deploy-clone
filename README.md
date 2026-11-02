@@ -74,8 +74,3 @@ SELECT id, content, post_id, author_id FROM comments;
 SELECT * FROM refresh_tokens;
 ```
 
-## 5주차 과제 반영 내용
-
-- **필수 2 — 댓글 작성자 검사**: `CommentAccessDeniedException`(403) 추가, `CommentService.updateComment/deleteComment` 에 `comment.isAuthor(userId)` 검사, `CommentController` 에 `@AuthenticationPrincipal Long userId`. "해당 게시글의 댓글인지" 검사(`belongsTo`)는 그대로 유지.
-- **선택 1 — 내 정보·내 글**: `GET /api/users/me`(`UserController`/`UserService`/`UserResponse`), `GET /api/posts/my`(`PostRepository.findAllByAuthor`, `PostService.getMyPosts`). `/api/posts/my` 는 `GET /api/posts/**` permitAll 규칙보다 **먼저** `authenticated()` 로 선언해 토큰 없이는 401.
-- 선택 2(ADMIN 역할)는 반영하지 않았습니다.
